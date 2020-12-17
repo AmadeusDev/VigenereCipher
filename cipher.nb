@@ -1,0 +1,372 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14455,        364]
+NotebookOptionsPosition[     13465,        340]
+NotebookOutlinePosition[     13864,        356]
+CellTagsIndexPosition[     13821,        353]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"encode", "[", 
+     RowBox[{"text_String", ",", "key_String"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"textCode", ",", "keyCode"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"textCode", "=", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"ToCharacterCode", "[", 
+            RowBox[{"ToUpperCase", "@", "text"}], "]"}], ",", 
+           RowBox[{"_", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"IntervalMemberQ", "[", 
+               RowBox[{
+                RowBox[{"Interval", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"65", ",", "90"}], "}"}]}], ",", "#"}], "]"}], 
+              "&"}], ")"}]}]}], "]"}], "-", "65"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"keyCode", "=", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"ToCharacterCode", "[", 
+            RowBox[{"ToUpperCase", "@", "key"}], "]"}], ",", 
+           RowBox[{"_", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"IntervalMemberQ", "[", 
+               RowBox[{
+                RowBox[{"Interval", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"65", ",", "90"}], "}"}]}], ",", "#"}], "]"}], 
+              "&"}], ")"}]}]}], "]"}], "-", "65"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"keyCode", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "textCode", "]"}], "<", 
+           RowBox[{"Length", "[", "keyCode", "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"keyCode", "[", 
+           RowBox[{"[", 
+            RowBox[{";;", 
+             RowBox[{"Length", "@", "textCode"}]}], "]"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PadRight", "[", 
+           RowBox[{"keyCode", ",", 
+            RowBox[{"Length", "@", "textCode"}], ",", "keyCode"}], "]"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"FromCharacterCode", "[", 
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{"textCode", "+", "keyCode"}], ",", "26"}], "]"}], "+", 
+         "65"}], "]"}]}]}], "]"}]}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"decode", "[", 
+     RowBox[{"text_String", ",", "key_String"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"textCode", ",", "keyCode"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"textCode", "=", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"ToCharacterCode", "[", 
+            RowBox[{"ToUpperCase", "@", "text"}], "]"}], ",", 
+           RowBox[{"_", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"IntervalMemberQ", "[", 
+               RowBox[{
+                RowBox[{"Interval", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"65", ",", "90"}], "}"}]}], ",", "#"}], "]"}], 
+              "&"}], ")"}]}]}], "]"}], "-", "65"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"keyCode", "=", 
+        RowBox[{
+         RowBox[{"Cases", "[", 
+          RowBox[{
+           RowBox[{"ToCharacterCode", "[", 
+            RowBox[{"ToUpperCase", "@", "key"}], "]"}], ",", 
+           RowBox[{"_", "?", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"IntervalMemberQ", "[", 
+               RowBox[{
+                RowBox[{"Interval", "@", 
+                 RowBox[{"{", 
+                  RowBox[{"65", ",", "90"}], "}"}]}], ",", "#"}], "]"}], 
+              "&"}], ")"}]}]}], "]"}], "-", "65"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"keyCode", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "textCode", "]"}], "<", 
+           RowBox[{"Length", "[", "keyCode", "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"keyCode", "[", 
+           RowBox[{"[", 
+            RowBox[{";;", 
+             RowBox[{"Length", "@", "textCode"}]}], "]"}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PadRight", "[", 
+           RowBox[{"keyCode", ",", 
+            RowBox[{"Length", "@", "textCode"}], ",", "keyCode"}], "]"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"FromCharacterCode", "[", 
+        RowBox[{
+         RowBox[{"Mod", "[", 
+          RowBox[{
+           RowBox[{"textCode", "-", "keyCode"}], ",", "26"}], "]"}], "+", 
+         "65"}], "]"}]}]}], "]"}]}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"Panel", "[", 
+    RowBox[{"Column", "[", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Vigen\[EGrave]re cipher\>\"", ",", "\"\<Title\>\"", ",", " ", 
+         "Bold"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Zpr\[AAcute]va, kter\[AAcute] bude \
+\[SHacek]ifrov\[AAcute]na\>\"", ",", "Bold"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"InputField", "[", 
+        RowBox[{
+         RowBox[{"Dynamic", "[", "text", "]"}], ",", "String"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Kl\[IAcute]\[CHacek] pro \
+za\[SHacek]ifrov\[AAcute]n\[IAcute]\>\"", ",", "Bold"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"InputField", "[", 
+        RowBox[{
+         RowBox[{"Dynamic", "[", "key", "]"}], ",", "String"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<Za\[SHacek]ifruj\>\"", ",", 
+         RowBox[{"code", " ", "=", " ", 
+          RowBox[{"encode", "[", 
+           RowBox[{"text", ",", "key"}], "]"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<De\[SHacek]ifruj\>\"", ",", 
+         RowBox[{"code2", " ", "=", " ", 
+          RowBox[{"decode", "[", 
+           RowBox[{"text", ",", " ", "key"}], "]"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Za\[SHacek]ifrovan\[AAcute] zpr\[AAcute]va\>\"", ",", "Bold"}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"InputField", "[", 
+        RowBox[{"Dynamic", "[", "code", "]"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<De\[SHacek]ifrovan\[AAcute] zpr\[AAcute]va\>\"", ",", "Bold"}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"InputField", "[", 
+        RowBox[{"Dynamic", "[", "code2", "]"}], "]"}]}], 
+      "\[IndentingNewLine]", "}"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.817120077184261*^9, 3.817120142303509*^9}, {
+   3.81712091131551*^9, 3.817120919102585*^9}, {3.8171215727797537`*^9, 
+   3.81712159964018*^9}, {3.8171222984358745`*^9, 3.8171223087399473`*^9}, {
+   3.8171224644905915`*^9, 3.8171224793683662`*^9}, {3.817122509599391*^9, 
+   3.817122529958722*^9}, {3.8171225706887894`*^9, 3.817122601619864*^9}, {
+   3.81712272021268*^9, 3.817122763142199*^9}, {3.817122834903736*^9, 
+   3.8171230227252283`*^9}, {3.817123170476647*^9, 3.817123175196535*^9}, {
+   3.817123764093135*^9, 3.8171237684340987`*^9}, {3.8171240101556273`*^9, 
+   3.817124010350045*^9}, {3.8171244485889535`*^9, 3.817124450459631*^9}, {
+   3.817124564511699*^9, 3.8171245852315087`*^9}, {3.8171246849904127`*^9, 
+   3.8171246929324884`*^9}, {3.8171248712037888`*^9, 
+   3.8171248994337816`*^9}, {3.817124941084817*^9, 3.8171249489033723`*^9}, {
+   3.817125017245185*^9, 3.817125020073927*^9}, {3.81712527600768*^9, 
+   3.8171252961271877`*^9}, {3.817125381628249*^9, 3.8171254053889437`*^9}, {
+   3.8171254559688563`*^9, 3.8171254909299335`*^9}, {3.8171255268200073`*^9, 
+   3.817125538599985*^9}, {3.8171257822605333`*^9, 3.8171258084225254`*^9}, {
+   3.817125889503927*^9, 3.8171258950037975`*^9}, {3.8171259757949896`*^9, 
+   3.8171259808649673`*^9}, {3.817126133567321*^9, 3.817126137046397*^9}, {
+   3.817126184176405*^9, 3.817126266357174*^9}, {3.817126379068453*^9, 
+   3.817126449218948*^9}, 3.817126482050601*^9, {3.8171267679037027`*^9, 
+   3.817126778331806*^9}, {3.8171272834796247`*^9, 3.8171274456601114`*^9}, {
+   3.8171285817315755`*^9, 3.817128598520813*^9}, {3.817128931675515*^9, 
+   3.817128971004449*^9}, {3.817129076935542*^9, 3.8171290804459906`*^9}, {
+   3.8171293645884123`*^9, 3.817129364718066*^9}, {3.817129530791129*^9, 
+   3.8171295451002855`*^9}, {3.8171303537894144`*^9, 3.817130354988477*^9}, {
+   3.817130783962739*^9, 3.8171307905824394`*^9}, {3.817130848074008*^9, 
+   3.81713084932258*^9}},
+ CellLabel->
+  "(Debug) In[2]:=",ExpressionUUID->"99c30f97-c76e-4c37-a7e5-5a6b06d08a76"],
+
+Cell[BoxData[
+ PanelBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\<\"Vigen\[EGrave]re cipher\"\>", "Title",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      StyleBox["\<\"Zpr\[AAcute]va, kter\[AAcute] bude \
+\[SHacek]ifrov\[AAcute]na\"\>",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      InputFieldBox[Dynamic[$CellContext`text], String]},
+     {
+      StyleBox["\<\"Kl\[IAcute]\[CHacek] pro za\[SHacek]ifrov\[AAcute]n\
+\[IAcute]\"\>",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      InputFieldBox[Dynamic[$CellContext`key], String]},
+     {
+      ButtonBox["\<\"Za\[SHacek]ifruj\"\>",
+       Appearance->Automatic,
+       ButtonFunction:>($CellContext`code = \
+$CellContext`encode[$CellContext`text, $CellContext`key]),
+       Evaluator->Automatic,
+       Method->"Preemptive"]},
+     {
+      ButtonBox["\<\"De\[SHacek]ifruj\"\>",
+       Appearance->Automatic,
+       ButtonFunction:>($CellContext`code2 = \
+$CellContext`decode[$CellContext`text, $CellContext`key]),
+       Evaluator->Automatic,
+       Method->"Preemptive"]},
+     {
+      StyleBox["\<\"Za\[SHacek]ifrovan\[AAcute] zpr\[AAcute]va\"\>",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      InputFieldBox[Dynamic[$CellContext`code]]},
+     {
+      StyleBox["\<\"De\[SHacek]ifrovan\[AAcute] zpr\[AAcute]va\"\>",
+       StripOnInput->False,
+       FontWeight->Bold]},
+     {
+      InputFieldBox[Dynamic[$CellContext`code2]]}
+    },
+    DefaultBaseStyle->"Column",
+    GridBoxAlignment->{"Columns" -> {{Left}}},
+    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+   "Column"]]], "Output",
+ CellChangeTimes->{
+  3.8171244741425543`*^9, {3.817124589152676*^9, 3.817124617197023*^9}, {
+   3.817124695268407*^9, 3.8171247085927963`*^9}, 3.8171247868112125`*^9, 
+   3.8171249005818915`*^9, 3.817124950680716*^9, 3.8171250225332327`*^9, 
+   3.817125407949924*^9, {3.8171254730259485`*^9, 3.817125493230031*^9}, 
+   3.817125541612687*^9, 3.8171258105942087`*^9, 3.8171258970625563`*^9, {
+   3.8171259603197603`*^9, 3.8171259824955873`*^9}, 3.8171261404571996`*^9, {
+   3.817126211431485*^9, 3.8171262682488856`*^9}, {3.817126411962599*^9, 
+   3.817126452850315*^9}, 3.817126485161157*^9, 3.8171270780919437`*^9, 
+   3.8171274041892605`*^9, 3.817127447498459*^9, {3.8171285870671387`*^9, 
+   3.8171286010998487`*^9}, {3.817128934530033*^9, 3.8171289661035447`*^9}, 
+   3.8171290834169717`*^9, {3.8171293418199015`*^9, 3.817129370401287*^9}, {
+   3.8171301280846786`*^9, 3.817130138790907*^9}, 3.817130357539483*^9, {
+   3.8171307926952496`*^9, 3.817130801726124*^9}, 3.817130851138831*^9, 
+   3.8171920181154575`*^9},
+ CellLabel->
+  "(Debug) Out[4]=",ExpressionUUID->"693611d4-b066-4b56-a3f1-d961fbcd6e96"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.817124460528331*^9, 
+  3.8171244715279927`*^9}},ExpressionUUID->"d333ce44-2a47-47e6-9769-\
+c6f3c1869795"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.817124441698676*^9, 
+  3.8171244695477295`*^9}},ExpressionUUID->"81fdc2b9-e860-472e-8673-\
+5ca139257cb8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8171912689682455`*^9, 3.8171912825250573`*^9}, 
+   3.817192014665063*^9},ExpressionUUID->"e509e5d0-707c-445c-bdb1-\
+62de86a170b3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ToCharacterCode", "strse", 
+   "\"String or list of strings expected at position \\!\\(\\*RowBox[{\\\"1\\\
+\"}]\\) in \\!\\(\\*RowBox[{\\\"ToCharacterCode\\\", \\\"[\\\", \\\"H\\\", \\\
+\"]\\\"}]\\).\"", 2, 1, 1, 26364557006037924216, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8171912837330317`*^9},
+ CellLabel->
+  "(Debug) During evaluation of \
+In[1]:=",ExpressionUUID->"ce1b1dd0-0e08-4de0-8462-2fc0f2e44a95"],
+
+Cell[BoxData[
+ RowBox[{"ToCharacterCode", "[", "H", "]"}]], "Output",
+ CellChangeTimes->{3.817191283927455*^9},
+ CellLabel->
+  "(Debug) Out[1]=",ExpressionUUID->"e825335a-21cf-420f-ac5e-e8483366927d"]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4d11f6e7-7421-47d1-a386-13dcb6e37063"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 8894, 209, 561, "Input",ExpressionUUID->"99c30f97-c76e-4c37-a7e5-5a6b06d08a76"],
+Cell[9477, 233, 2763, 68, 354, "Output",ExpressionUUID->"693611d4-b066-4b56-a3f1-d961fbcd6e96"]
+}, Open  ]],
+Cell[12255, 304, 154, 3, 28, "Input",ExpressionUUID->"d333ce44-2a47-47e6-9769-c6f3c1869795"],
+Cell[12412, 309, 154, 3, 28, "Input",ExpressionUUID->"81fdc2b9-e860-472e-8673-5ca139257cb8"],
+Cell[CellGroupData[{
+Cell[12591, 316, 179, 3, 28, "Input",ExpressionUUID->"e509e5d0-707c-445c-bdb1-62de86a170b3"],
+Cell[12773, 321, 473, 10, 23, "Message",ExpressionUUID->"ce1b1dd0-0e08-4de0-8462-2fc0f2e44a95"],
+Cell[13249, 333, 200, 4, 46, "Output",ExpressionUUID->"e825335a-21cf-420f-ac5e-e8483366927d"]
+}, Open  ]]
+}
+]
+*)
+
